@@ -453,3 +453,16 @@ function HunterSmart()
 
     end
 end
+
+function MultiDot()
+
+  -- Try Curse of Exhaustion first
+  if not Cursive:Multicurse(CurrentCurse, "HIGHEST_HP", {resistsound=true, expiringsound=true}) then
+    -- Then try Siphon Life
+    if not Cursive:Multicurse("Corruption", "HIGHEST_HP", {resistsound=true, expiringsound=true}) then
+      -- Then Corruption
+      Cursive:Multicurse("Curse of Agony", "HIGHEST_HP", {resistsound=true, expiringsound=true})
+        -- Finally Curse of Agony
+    end
+  end
+end
