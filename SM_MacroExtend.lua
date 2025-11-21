@@ -431,8 +431,9 @@ function HunterSmart()
             UseAction(_a)
         end
 
-        -- Fire melee macro (Raptor Strike + Mongoose Bite)
-        UseAction(1)
+        --Fire Melee Skills
+        CastSpellByName("Raptor Strike")
+        CastSpellByName("Mongoose Strike")
 
     else
         -- Activate Auto Shot if not already active
