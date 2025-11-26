@@ -431,7 +431,7 @@ function HunterSmart()
             UseAction(_a)
         end
 
-        --Fire Melee Skills
+        -- Fire Melee Skills
         CastSpellByName("Raptor Strike")
         CastSpellByName("Mongoose Strike")
 
@@ -441,19 +441,19 @@ function HunterSmart()
             UseAction(3)
         end
 
-        -- Try to fire Steady Shot with fallback to CastSpellByName if Quiver is bugged
-        if Quiver and Quiver.GetSecondsRemainingReload and Quiver.GetSecondsRemainingShoot then
-            local reloading, reloadLeft = Quiver.GetSecondsRemainingReload()
-            local _, shootTimeLeft = Quiver.GetSecondsRemainingShoot()
-            local bugged = shootTimeLeft and shootTimeLeft < -0.25
-            if not reloading or reloadLeft > 0.2 then
-                local castFunc = bugged and CastSpellByName or Quiver.CastNoClip
-                castFunc("Steady Shot")
+        -- Simple + clean Quiver Steady Shot logic you liked
+        if Quiver and Quiver.GetSecondsRemainingReload then
+            local reloading, timeLeft = Quiver.GetSecondsRemainingReload()
+            if not reloading or timeLeft > 0.2 then
+                Quiver.CastNoClip("Steady Shot")
             end
         end
 
     end
 end
+
+-- Cached auto-attack button slot
+local _a = nil
 
 function MultiDot()
 
